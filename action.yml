@@ -1,0 +1,15 @@
+name: Publish MkDocs website
+description: Publish MkDocs website
+
+runs:
+  using: composite
+  steps:
+    - name: setup bot
+      shell: bash
+      run: |
+        git config --global --add safe.directory '*'
+        git config user.name github-actions[bot]
+        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+    - name: deploy website
+      shell: bash
+      run: mkdocs gh-deploy --force
